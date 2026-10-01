@@ -1,6 +1,7 @@
-#include <stdio.h>
+#include "lab_two/cli.h"
 
 int main(void) {
-    printf("Hello, World!\n");
+    start_menu();
+
     return 0;
 }
