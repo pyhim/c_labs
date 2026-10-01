@@ -62,7 +62,7 @@ int read_int(int *const out) {
     return status;
 }
 
-void print_int_array(const array_t *array, utils_debug_code_t *dbg_code) {
+/*void print_int_array(const array_t *array, utils_debug_code_t *dbg_code) {
     printf("[");
 
     for (int i = 0; i < array->size - 1; i++) {
@@ -72,9 +72,9 @@ void print_int_array(const array_t *array, utils_debug_code_t *dbg_code) {
 
     const int *number = array_at(array, array->size - 1);
     printf("%d]\n", *number);
-}
+}*/
 
-void print_double_array(const array_t *array, utils_debug_code_t *dbg_code) {
+/*void print_double_array(const array_t *array, utils_debug_code_t *dbg_code) {
     printf("[");
 
     for (int i = 0; i < array->size - 1; i++) {
@@ -84,4 +84,4 @@ void print_double_array(const array_t *array, utils_debug_code_t *dbg_code) {
 
     const double *number = array_at(array, array->size - 1);
     printf("%.3f]\n", *number);
-}
+}*/
