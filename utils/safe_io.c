@@ -26,12 +26,16 @@ int stdin_read(char *const out, const int size) {
 
 int read_double(double *const out) {
     char buffer[32];
+    char *endptr = NULL;
 
     if (stdin_read(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
-    *out = strtod(buffer, NULL);
+    *out = strtod(buffer, &endptr);
+
+    if (endptr == buffer || *endptr != '\n' && *endptr != '\0')
+        return -1;
 
     const int status = errno == ERANGE;
     warn_if_error(status);
@@ -41,12 +45,16 @@ int read_double(double *const out) {
 
 int read_int(int *const out) {
     char buffer[32];
+    char *endptr = NULL;
 
     if (stdin_read(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
-    *out = (int)strtol(buffer, NULL, 10);
+    *out = (int)strtol(buffer, &endptr, 10);
+
+    if (endptr == buffer || *endptr != '\n' && *endptr != '\0')
+        return -1;
 
     const int status = errno == ERANGE;
     warn_if_error(status);

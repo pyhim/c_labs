@@ -29,7 +29,7 @@ int ask_for_value(double *const value_out, const char value_label) {
     }
 
     if (i == 5) {
-
+        return status;
     }
 
     *value_out = value;

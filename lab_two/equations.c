@@ -33,9 +33,10 @@ double task2(const double x, const double y, math_debug_code_t *dbg_code) {
 
     if (double_equals_zero(cos_xy)) {
         write_math_debug_code(dbg_code, ERR_ARGUMENT_OUTSIDE_DOMAIN);
+        return 0.0;
     }
 
-    const double tan_xy = sin(x * y) * cos_xy;
+    const double tan_xy = sin(x * y) / cos_xy;
 
     const double nominator = sin(x) + cos(y);
 
@@ -52,7 +53,7 @@ double task5(const double x, math_debug_code_t *dbg_code) {
         return 0.0;
     }
 
-    const double tan_x = double_equals_zero(sin(x) / cos_x);
+    const double tan_x = sin(x) / cos_x;
 
     if (double_equals_zero(tan_x)) {
         write_math_debug_code(dbg_code, ERR_ARGUMENT_OUTSIDE_DOMAIN);
