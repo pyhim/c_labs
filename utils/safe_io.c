@@ -17,7 +17,7 @@ int stdin_read(char *const out, const int size) {
     const char *result = fgets(out, size, stdin);
     const int status = result == NULL;
 
-    warn_if_error(status);
+    fflush(stdin);
 
     return status;
 }
