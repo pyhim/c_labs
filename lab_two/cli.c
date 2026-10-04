@@ -66,16 +66,16 @@ int start_menu() {
     double result = 0.0;
     math_debug_code_t dbg_code;
 
-    result = task1(x, &dbg_code);
-    print_equation_result(1, result, &dbg_code);
-    result = task2(x, y, &dbg_code);
-    print_equation_result(2, result, &dbg_code);
-    result = task5(x, &dbg_code);
-    print_equation_result(5, result, &dbg_code);
-    result = task7(x, y, &dbg_code);
-    print_equation_result(7, result, &dbg_code);
-    result = task8(x, &dbg_code);
-    print_equation_result(8, result, &dbg_code);
+    result = task18(x, y, &dbg_code);
+    print_equation_result(18, result, &dbg_code);
+    result = task21(x, &dbg_code);
+    print_equation_result(21, result, &dbg_code);
+    result = task22(x, y, &dbg_code);
+    print_equation_result(22, result, &dbg_code);
+    result = task25(x, y, &dbg_code);
+    print_equation_result(25, result, &dbg_code);
+    result = task44(x, y, &dbg_code);
+    print_equation_result(44, result, &dbg_code);
 
     return 0;
 }

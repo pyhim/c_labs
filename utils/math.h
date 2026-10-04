@@ -8,7 +8,7 @@
 
 typedef enum math_debug_code {
     MATH_SUCCESS = 0,
-    ERR_ARGUMENT_OUTSIDE_DOMAIN,
+    MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN,
 } math_debug_code_t;
 
 const char *math_debug_code_to_string(math_debug_code_t code);

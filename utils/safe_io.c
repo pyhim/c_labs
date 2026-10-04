@@ -16,7 +16,7 @@ static void warn_if_error(const int code) {
 }
 
 int stdin_read(char *const out, const int size) {
-    const char *const result = fgets(out, size, stdin);
+    const char *result = fgets(out, size, stdin);
     const int status = result == NULL;
 
     warn_if_error(status);
@@ -72,9 +72,9 @@ int read_int(int *const out) {
 
     const int *number = array_at(array, array->size - 1);
     printf("%d]\n", *number);
-}*/
+}
 
-/*void print_double_array(const array_t *array, utils_debug_code_t *dbg_code) {
+void print_double_array(const array_t *array, utils_debug_code_t *dbg_code) {
     printf("[");
 
     for (int i = 0; i < array->size - 1; i++) {

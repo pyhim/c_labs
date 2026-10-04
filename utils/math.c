@@ -10,10 +10,10 @@
 
 const char *math_debug_code_to_string(const math_debug_code_t code) {
     switch (code) {
-        case MATH_SUCCESS:
-            return "Success.";
-        case ERR_ARGUMENT_OUTSIDE_DOMAIN:
+        case MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN:
             return "The argument is outside the domain of the function's permissible values.";
+        default:
+            return "Success.";
     }
 }
 
@@ -25,7 +25,7 @@ void write_math_debug_code(math_debug_code_t *const to, const math_debug_code_t 
 }
 
 bool double_equals_zero(const double number) {
-    return (fabs(number) < EPSILON);
+    return fabs(number) < EPSILON;
 }
 
 double discriminant(const double a, const double b, const double c) {
