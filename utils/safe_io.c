@@ -9,10 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void warn_if_error(const int code) {
-    if (code != 0) {
-        fprintf(stderr, "%s\n", strerror(errno));
-    }
+static void stderr_print_error(const int code) {
+    fprintf(stderr, "%s\n", strerror(errno));
 }
 
 int stdin_read(char *const out, const int size) {
