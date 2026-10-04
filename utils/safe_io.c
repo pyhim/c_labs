@@ -18,7 +18,10 @@ int stdin_read(char *const out, const int size) {
 
     fflush(stdin);
 
-    return status;
+    if (!result)
+        stderr_print_errno();
+
+    return 0;
 }
 
 int read_double(double *const out) {
