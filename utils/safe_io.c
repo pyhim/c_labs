@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void stderr_print_error(const int code) {
+static void stderr_print_errno() {
     fprintf(stderr, "%s\n", strerror(errno));
 }
 
