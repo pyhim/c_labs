@@ -9,38 +9,53 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void stderr_print_errno() {
-    fprintf(stderr, "%s\n", strerror(errno));
+#define BUFFER_PLACEHOLDER '?'
+
+// This weird function is to drain the input stream (stdin) if the input was to big
+// and the newline character is still in the stream, not letting the user to enter anything
+// until the newline character is flushed from the stream.
+static void drain_stdin(void) {
+    for (int c = getchar(); c != '\n' && c != EOF; c = getchar()) {
+    }
 }
 
 int stdin_read(char *const out, const int size) {
     const char *result = fgets(out, size, stdin);
 
-    fflush(stdin);
+    if (!result) {
+        perror("Unable to read from stdin");
+        return -1;
+    }
 
-    if (!result)
-        stderr_print_errno();
+    if (!strchr(out, '\n'))
+        drain_stdin();
 
     return 0;
 }
 
 int read_double(double *const out) {
-    char buffer[32];
+    char buffer[64];
     char *endptr = NULL;
+
+    memset(buffer, BUFFER_PLACEHOLDER, sizeof(buffer));
 
     if (stdin_read(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
-    *out = strtod(buffer, &endptr);
+    const double converted_value = strtod(buffer, &endptr);
 
-    if (endptr == buffer || *endptr != '\n' && *endptr != '\0')
+    if (endptr == buffer || (*endptr != '\n' && *endptr != '\0'))
         return -1;
 
-    const int status = errno == ERANGE;
-    warn_if_error(status);
+    if (errno) {
+        perror("Unable to read a 'double' value from stdin");
+        return -1;
+    }
 
-    return status;
+    *out = converted_value;
+
+    return 0;
 }
 
 int read_int(int *const out) {
@@ -51,15 +66,19 @@ int read_int(int *const out) {
         return -1;
 
     errno = 0;
-    *out = (int)strtol(buffer, &endptr, 10);
+    const int converted_value = (int)strtol(buffer, &endptr, 10);
 
-    if (endptr == buffer || *endptr != '\n' && *endptr != '\0')
+    if (endptr == buffer || (*endptr != '\n' && *endptr != '\0'))
         return -1;
 
-    const int status = errno == ERANGE;
-    warn_if_error(status);
+    if (errno) {
+        perror("Unable to read a 'double' value from stdin");
+        return -1;
+    }
 
-    return status;
+    *out = converted_value;
+
+    return 0;
 }
 
 /*void print_int_array(const array_t *array, utils_debug_code_t *dbg_code) {

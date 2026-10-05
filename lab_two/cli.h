@@ -6,7 +6,7 @@
 
 #include "../utils/math.h"
 
-int ask_for_value(double *value_out, char value_label);
+int ask_for_value_double(double *value_out, char value_label);
 
 void print_equation_result(int equation_id, double result, const math_debug_code_t *dbg_code);
 

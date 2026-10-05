@@ -9,7 +9,7 @@
 #include "equations.h"
 #include "../utils/safe_io.h"
 
-int ask_for_value(double *const value_out, const char value_label) {
+int ask_for_value_double(double *const value_out, const char value_label) {
     int status = 0, i = 0;
     double value = 0.0;
 
@@ -18,8 +18,7 @@ int ask_for_value(double *const value_out, const char value_label) {
         status = read_double(&value);
 
         if (status != 0) {
-            printf("Try entering the value again.\n");
-            value = 0.0;
+            puts("Try entering the value again.");
             i++;
 
             continue;
@@ -51,13 +50,13 @@ int start_menu() {
     double x = 0.0, y = 0.0;
     int status = 0;
 
-    status = ask_for_value(&x, x_label);
+    status = ask_for_value_double(&x, x_label);
     if (status != 0) {
         printf("Unable to read the value of %c\n", x_label);
         return status;
     }
 
-    status = ask_for_value(&y, y_label);
+    status = ask_for_value_double(&y, y_label);
     if (status != 0) {
         printf("Unable to read the value of %c\n", y_label);
         return status;
