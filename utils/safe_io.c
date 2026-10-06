@@ -27,14 +27,17 @@ int stdin_read(char *const out, const int size) {
         return -1;
     }
 
-    if (!strchr(out, '\n'))
+    if (!strchr(out, '\n')) {
+        puts("You have entered too many characters!");
         drain_stdin();
+        return -1;
+    }
 
     return 0;
 }
 
 int read_double(double *const out) {
-    char buffer[64];
+    char buffer[32];
     char *endptr = NULL;
 
     memset(buffer, BUFFER_PLACEHOLDER, sizeof(buffer));
