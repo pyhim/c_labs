@@ -17,4 +17,5 @@ set(lab2_sources
         utils/math.c)
 
 add_executable(c_labs ${lab2_sources})
+add_compile_options(-Wall -Wextra -Wpedantic -march=native)
 target_link_libraries(c_labs PRIVATE m)
