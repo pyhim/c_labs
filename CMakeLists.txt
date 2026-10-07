@@ -11,8 +11,6 @@ set(lab2_sources
         lab_two/cli.h
         utils/safe_io.c
         utils/safe_io.h
-        utils/debug.c
-        utils/debug.h
         utils/math.h
         utils/math.c)
 
