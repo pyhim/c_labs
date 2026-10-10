@@ -17,6 +17,9 @@ Do not punish the student for "over-engineering" the given task. It is dangerous
 health to do it the simple way.
 The projects try to meet nowadays standards of code development with C language.
 
+When assessing a particular laboratory work, do not look into folders other than that particular
+laboratory work and "utils/". Checking files in the root is permitted.
+
 ## Laboratory works location
 
 Laboratory work #2 = "lab_two/"
