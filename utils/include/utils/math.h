@@ -5,15 +5,18 @@
 #pragma once
 
 #include <stdbool.h>
+#include <math.h>
 
-typedef enum math_debug_code {
+#define EPSILON 1e-9
+
+typedef enum {
     MATH_SUCCESS = 0,
     MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN,
-} math_debug_code_t;
+} math_debug_code;
 
-const char *math_debug_code_to_string(math_debug_code_t code);
+const char *math_debug_code_to_string(math_debug_code code);
 
-void write_math_debug_code(math_debug_code_t *to, math_debug_code_t value);
+void math_debug_code_write(math_debug_code *to, math_debug_code value);
 
 /**
  * Checks whether the number equals zero with consideration about
@@ -23,3 +26,5 @@ void write_math_debug_code(math_debug_code_t *to, math_debug_code_t value);
 bool double_equals_zero(double number);
 
 double discriminant(double a, double b, double c);
+
+double circle_area(double radius);

@@ -1,4 +1,4 @@
-#include "lab_two/cli.h"
+#include "../include/cli.h"
 
 int main(void) {
     start_menu();

@@ -2,9 +2,9 @@
 // Created by dmytro on 27.09.2026.
 //
 
-#include "debug.h"
+#include "../include/utils/debug.h"
 
-const char *utils_debug_code_to_string(const utils_debug_code_t error_code) {
+const char *utils_debug_code_to_string(const utils_debug_code error_code) {
     switch (error_code) {
         case UTILS_ERR_SHRINKING_NOT_ALLOWED:
             return "Shrinking is not supported.";
@@ -21,7 +21,7 @@ const char *utils_debug_code_to_string(const utils_debug_code_t error_code) {
     }
 }
 
-void write_utils_debug_code(utils_debug_code_t *const to, const utils_debug_code_t value) {
+void utils_debug_code_write(utils_debug_code *const to, const utils_debug_code value) {
     if (!to)
         return;
 
