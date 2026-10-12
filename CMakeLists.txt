@@ -12,6 +12,7 @@ set(UTILS_SOURCES
         utils/src/debug.c
         utils/src/safe_io.c
         utils/src/cli.c
+        utils/src/functional.c
 )
 set(UTILS_HEADERS
         #utils/include/utils/array.h
@@ -21,6 +22,7 @@ set(UTILS_HEADERS
         utils/include/utils/math.h
         utils/include/utils/debug.h
         utils/include/utils/safe_io.h
+        utils/include/utils/functional.h
 )
 add_library(utils SHARED ${UTILS_HEADERS} ${UTILS_SOURCES})
 target_link_libraries(utils PRIVATE m)
@@ -46,5 +48,5 @@ set(LAB3_HEADERS
         lab_three/include/tasks.h
 )
 add_executable(lab3 ${LAB3_HEADERS} ${LAB3_SOURCES})
-target_include_directories(lab2 PRIVATE utils/include/)
+target_include_directories(lab3 PRIVATE utils/include/)
 target_link_libraries(lab3 PRIVATE utils)
