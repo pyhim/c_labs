@@ -1,0 +1,41 @@
+//
+// Created by dmytro on 12.10.2026.
+//
+
+#pragma once
+
+#include <stdbool.h>
+
+/*      Predicate       */
+
+typedef bool (*Predicate)(const void *);
+
+bool invoke_predicate(Predicate predicate, const void *value);
+
+#define WRAP_PREDICATE(P_name, P_arg_type)              \
+    static bool P_name##_adapter(const void *value) {   \
+        return P_name(*(P_arg_type*)value);             \
+    }
+
+/*       Comparer       */
+
+typedef enum {
+    CMP_LESS_THAN = -1,
+    CMP_EQUAL = 0,
+    CMP_GREATER_THAN = 1,
+} comparison_result;
+
+/**
+ * A comparer function interface that compares the left operand with the right operand.
+ * @return If LEFT == RIGHT: <c>CMP_EQUAL</c>
+ * @return If LEFT < RIGHT: <c>CMP_LESS_THAN</c>
+ * @return If LEFT > RIGHT: <c>CMP_GREATER_THAN</c>
+ */
+typedef comparison_result (*Comparer)(const void*, const void*);
+
+comparison_result invoke_comparer(Comparer comparer, const void *left, const void *right);
+
+#define WRAP_COMPARER(C_name, C_arg1_type, C_arg2_type)                                 \
+    static comparison_result C_name##_adapter(const void *left, const void *right) {    \
+        return C_name(*(C_arg1_type*)left, *(C_arg2_type*)right);                       \
+    }
