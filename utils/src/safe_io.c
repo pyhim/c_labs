@@ -38,7 +38,7 @@ int stdin_read(char *const out, const int size) {
 
 int read_double(double *const out) {
     char buffer[32];
-    char *endptr = NULL;
+    char *end_ptr = NULL;
 
     memset(buffer, BUFFER_PLACEHOLDER, sizeof(buffer));
 
@@ -46,9 +46,9 @@ int read_double(double *const out) {
         return -1;
 
     errno = 0;
-    const double converted_value = strtod(buffer, &endptr);
+    const double converted_value = strtod(buffer, &end_ptr);
 
-    if (endptr == buffer || (*endptr != '\n' && *endptr != '\0'))
+    if (end_ptr == buffer || (*end_ptr != '\n' && *end_ptr != '\0'))
         return -1;
 
     if (errno) {
