@@ -4,8 +4,6 @@
 
 #include "../include/utils/math.h"
 
-#define EPSILON 1e-9 // 0.000000001
-
 const char *math_debug_code_to_string(const math_debug_code code) {
     switch (code) {
         case MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN:
@@ -26,10 +24,34 @@ bool double_equals_zero(const double number) {
     return fabs(number) < EPSILON;
 }
 
-double discriminant(const double a, const double b, const double c) {
-    return b * b - 4 * a * c;
+bool double_less_than_zero(const double number) {
+    return number < -EPSILON;
 }
 
-double circle_area(const double radius) {
-    return radius * radius * M_PI;
+bool double_greater_than_zero(const double number) {
+    return number > EPSILON;
+}
+
+comparison_result compare_doubles(const double left, const double right) {
+    const double delta = left - right;
+
+    if (double_greater_than_zero(delta)) {
+        return CMP_GREATER_THAN;
+    }
+    if (double_less_than_zero(delta)) {
+        return CMP_LESS_THAN;
+    }
+
+    return CMP_EQUAL;
+}
+
+comparison_result compare_ints(const int left, const int right) {
+    if (left > right) {
+        return CMP_GREATER_THAN;
+    }
+    if (left < right) {
+        return CMP_LESS_THAN;
+    }
+
+    return CMP_EQUAL;
 }
