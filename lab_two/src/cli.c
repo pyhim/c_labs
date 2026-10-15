@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <utils/cli.h>
+
 #include "../include/equations.h"
 
 void print_equation_result(const int equation_id, const double result, const math_debug_code *dbg_code) {
@@ -19,21 +20,27 @@ void print_equation_result(const int equation_id, const double result, const mat
 }
 
 int start_menu(void) {
-    const char x_label = 'X', y_label = 'Y';
     double x = 0.0, y = 0.0;
-    int status = 0;
 
-    status = ask_for_value_double(&x, x_label);
-    if (status != 0) {
-        printf("Unable to read the value of %c\n", x_label);
-        return status;
-    }
+    PromptOptions_Double x_input_options = {
+        .out = &x,
+        .label = "X",
+        .max_attempts = 5,
+    };
+    PromptDebugCode status = prompt_double(&x_input_options);
 
-    status = ask_for_value_double(&y, y_label);
-    if (status != 0) {
-        printf("Unable to read the value of %c\n", y_label);
+    if (status)
         return status;
-    }
+
+    PromptOptions_Double y_input_options = {
+        .out = &y,
+        .label = "Y",
+        .max_attempts = 5,
+    };
+    status = prompt_double(&y_input_options);
+
+    if (status)
+        return status;
 
     double result = 0.0;
     math_debug_code dbg_code;
