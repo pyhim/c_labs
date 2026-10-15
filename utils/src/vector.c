@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/utils/safe_mem.h"
+
+DEFINE_WRITE_UNLESS_NULL(int)
+
 #define DEFAULT_GROWTH_FACTOR 1.5
 
 static CollectionDebugCode vector_increase_capacity(Vector *const self, const double factor) {
@@ -27,7 +31,7 @@ void vector_init(Vector *const self, const size_t type_size, const size_t capaci
     self->raw_array = malloc(type_size * capacity);
 
     if (!self->raw_array) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_MEMORY);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_MEMORY);
         return;
     }
 
@@ -35,7 +39,7 @@ void vector_init(Vector *const self, const size_t type_size, const size_t capaci
     self->size = 0;
     self->capacity = capacity;
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
 Vector vector_new_reserve(const size_t type_size, const size_t capacity, CollectionDebugCode *const dbg_code) {
@@ -56,7 +60,7 @@ Vector vector_new(const size_t type_size, CollectionDebugCode *const dbg_code) {
 
 void vector_reserve(Vector *const self, const size_t capacity, CollectionDebugCode *const dbg_code) {
     if (self->size > capacity) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_SHRINKING_NOT_ALLOWED);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_SHRINKING_NOT_ALLOWED);
         return;
     }
     if (self->size == capacity)
@@ -65,14 +69,14 @@ void vector_reserve(Vector *const self, const size_t capacity, CollectionDebugCo
     void *new_array = realloc(self->raw_array, capacity * self->type_size);
 
     if (new_array == NULL) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_MEMORY);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_MEMORY);
         return;
     }
 
     self->raw_array = new_array;
     self->capacity = capacity;
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
 void vector_push_back(Vector *const self, const void *const element, CollectionDebugCode *const dbg_code) {
@@ -80,7 +84,7 @@ void vector_push_back(Vector *const self, const void *const element, CollectionD
         const CollectionDebugCode code = vector_increase_capacity(self, DEFAULT_GROWTH_FACTOR);
 
         if (code != COLLECTION_SUCCESS) {
-            collections_debug_code_write(dbg_code, code);
+            write_unless_null_int(dbg_code, code);
             return;
         }
     }
@@ -89,7 +93,7 @@ void vector_push_back(Vector *const self, const void *const element, CollectionD
     memcpy(dest, element, self->type_size);
     self->size++;
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
 // void vector_pop_back(Vector *const self, CollectionDebugCode *const dbg_code) {
@@ -105,33 +109,33 @@ void vector_push_back(Vector *const self, const void *const element, CollectionD
 
 void *vector_at(const Vector *const self, const size_t index, CollectionDebugCode *const dbg_code) {
     if (index > self->size) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
         return NULL;
     }
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 
     return vector_unsafe_at(self, index);
 }
 
 void *vector_first(const Vector *self, CollectionDebugCode *dbg_code) {
     if (self->size == 0) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
         return NULL;
     }
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 
     return vector_unsafe_at(self, 0);
 }
 
 void *vector_last(const Vector *self, CollectionDebugCode *dbg_code) {
     if (self->size == 0) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
         return NULL;
     }
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 
     return vector_unsafe_at(self, self->size - 1);
 }
@@ -142,13 +146,13 @@ void *vector_unsafe_at(const Vector *self, const size_t index) {
 
 void vector_memcpy_to(const Vector *self, void *dest, const size_t n, CollectionDebugCode *const dbg_code) {
     if (n > self->size) {
-        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
         return;
     }
 
     memcpy(dest, &self->raw_array, n);
 
-    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
 void vector_free(Vector *const self) {
