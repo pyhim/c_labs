@@ -47,7 +47,7 @@ bool double_greater_than_zero(double number);
  * @param right Right operand
  * @return Result of the comparison
  */
-comparison_result compare_doubles(double left, double right);
+ComparisonResult compare_doubles(double left, double right);
 
 /**
  * Compare two int values.
@@ -55,4 +55,4 @@ comparison_result compare_doubles(double left, double right);
  * @param right Right operand
  * @return Result of the comparison
  */
-comparison_result compare_ints(int left, int right);
+ComparisonResult compare_ints(int left, int right);
