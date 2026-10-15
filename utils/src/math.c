@@ -4,7 +4,7 @@
 
 #include "../include/utils/math.h"
 
-const char *math_debug_code_to_string(const math_debug_code code) {
+const char *math_debug_code_to_string(const MathDebugCode code) {
     switch (code) {
         case MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN:
             return "The argument is outside the domain of the function's permissible values.";
@@ -13,7 +13,7 @@ const char *math_debug_code_to_string(const math_debug_code code) {
     }
 }
 
-void math_debug_code_write(math_debug_code *const to, const math_debug_code value) {
+void math_debug_code_write(MathDebugCode *const to, const MathDebugCode value) {
     if (!to)
         return;
 

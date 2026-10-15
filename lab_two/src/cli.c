@@ -9,7 +9,7 @@
 
 #include "../include/equations.h"
 
-void print_equation_result(const int equation_id, const double result, const math_debug_code *dbg_code) {
+void print_equation_result(const int equation_id, const double result, const MathDebugCode *dbg_code) {
     if (*dbg_code != MATH_SUCCESS) {
         const char *message = math_debug_code_to_string(*dbg_code);
         printf("Equation #%d failed: %s\n", equation_id, message);
@@ -43,7 +43,7 @@ int start_menu(void) {
         return status;
 
     double result = 0.0;
-    math_debug_code dbg_code;
+    MathDebugCode dbg_code;
 
     result = task18(x, y, &dbg_code);
     print_equation_result(18, result, &dbg_code);

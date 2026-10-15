@@ -6,7 +6,7 @@
 
 #include <math.h>
 
-double task18(const double x, const double y, math_debug_code *dbg_code) {
+double task18(const double x, const double y, MathDebugCode *dbg_code) {
     const double denominator = 18.0 * y - 1.0;
 
     if (double_equals_zero(denominator)) {
@@ -22,7 +22,7 @@ double task18(const double x, const double y, math_debug_code *dbg_code) {
     return result;
 }
 
-double task21(const double x, math_debug_code *dbg_code) {
+double task21(const double x, MathDebugCode *dbg_code) {
     if (x <= -1.0) {
         math_debug_code_write(dbg_code, MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN);
         return 0.0;
@@ -36,7 +36,7 @@ double task21(const double x, math_debug_code *dbg_code) {
     return result;
 }
 
-double task22(const double x, const double y, math_debug_code *dbg_code) {
+double task22(const double x, const double y, MathDebugCode *dbg_code) {
     if (x <= 0.0) {
         math_debug_code_write(dbg_code, MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN);
         return 0.0;
@@ -56,7 +56,7 @@ double task22(const double x, const double y, math_debug_code *dbg_code) {
     return result;
 }
 
-double task25(const double x, const double y, math_debug_code *dbg_code) {
+double task25(const double x, const double y, MathDebugCode *dbg_code) {
     const double sin_x_plus_y = sin(x + y);
     const double nominator = 1 + sin_x_plus_y * sin_x_plus_y;
     const double denominator = 2 + fabs(x - 2 * x / 1 + x * x * y * y);
@@ -67,7 +67,7 @@ double task25(const double x, const double y, math_debug_code *dbg_code) {
     return result;
 }
 
-double task44(const double x, const double y, math_debug_code *dbg_code) {
+double task44(const double x, const double y, MathDebugCode *dbg_code) {
     const double denominator = 5 - 7 * y;
 
     if (double_equals_zero(denominator)) {
@@ -82,7 +82,7 @@ double task44(const double x, const double y, math_debug_code *dbg_code) {
     return result;
 }
 
-/*double task1(const double x, math_debug_code *dbg_code) {
+/*double task1(const double x, MathDebugCode *dbg_code) {
     const double denominator = x * x - 8 * x + 12;
 
     if (double_equals_zero(denominator)) {
@@ -97,7 +97,7 @@ double task44(const double x, const double y, math_debug_code *dbg_code) {
     return nominator / denominator;
 }
 
-double task2(const double x, const double y, math_debug_code *dbg_code) {
+double task2(const double x, const double y, MathDebugCode *dbg_code) {
     const double denominator = cos(x) - sin(y);
 
     if (double_equals_zero(denominator)) {
@@ -121,7 +121,7 @@ double task2(const double x, const double y, math_debug_code *dbg_code) {
     return (nominator / denominator) * tan_xy;
 }
 
-double task5(const double x, math_debug_code *dbg_code) {
+double task5(const double x, MathDebugCode *dbg_code) {
     const double cos_x = cos(x);
 
     if (double_equals_zero(cos_x)) {
@@ -143,7 +143,7 @@ double task5(const double x, math_debug_code *dbg_code) {
     return absolute / tan_x;
 }
 
-double task7(const double x, const double y, math_debug_code *dbg_code) {
+double task7(const double x, const double y, MathDebugCode *dbg_code) {
     const double sin_x = sin(x), cos_x = cos(x);
 
     if (double_equals_zero(sin_x) || double_equals_zero(cos_x)) {
@@ -166,7 +166,7 @@ double task7(const double x, const double y, math_debug_code *dbg_code) {
     return pow(base, cot_x) + cos(x - y);
 }
 
-double task8(const double x, math_debug_code *dbg_code) {
+double task8(const double x, MathDebugCode *dbg_code) {
     if (double_equals_zero(x)) {
         math_debug_code_write(dbg_code, MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN);
         return 0.0;

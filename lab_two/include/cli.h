@@ -6,6 +6,6 @@
 
 #include <utils/math.h>
 
-void print_equation_result(int equation_id, double result, const math_debug_code *dbg_code);
+void print_equation_result(int equation_id, double result, const MathDebugCode *dbg_code);
 
 int start_menu(void);

@@ -11,22 +11,22 @@
 // Дурак, це ж оператор побітове виключне АБО, правильно буде:
 // ((N * N * N + K * K) % 60) + 1 = [18, 25, 44, 21, 22]
 
-double task18(double x, double y, math_debug_code *dbg_code);
+double task18(double x, double y, MathDebugCode *dbg_code);
 
-double task21(double x, math_debug_code *dbg_code);
+double task21(double x, MathDebugCode *dbg_code);
 
-double task22(double x, double y, math_debug_code *dbg_code);
+double task22(double x, double y, MathDebugCode *dbg_code);
 
-double task25(double x, double y, math_debug_code *dbg_code);
+double task25(double x, double y, MathDebugCode *dbg_code);
 
-double task44(double x, double y, math_debug_code *dbg_code);
+double task44(double x, double y, MathDebugCode *dbg_code);
 
-/*double task1(double x, math_debug_code *dbg_code);
+/*double task1(double x, MathDebugCode *dbg_code);
 
-double task2(double x, double y, math_debug_code *dbg_code);
+double task2(double x, double y, MathDebugCode *dbg_code);
 
-double task5(double x, math_debug_code *dbg_code);
+double task5(double x, MathDebugCode *dbg_code);
 
-double task7(double x, double y, math_debug_code *dbg_code);
+double task7(double x, double y, MathDebugCode *dbg_code);
 
-double task8(double x, math_debug_code *dbg_code);*/
+double task8(double x, MathDebugCode *dbg_code);*/

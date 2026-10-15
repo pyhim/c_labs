@@ -14,11 +14,11 @@
 typedef enum {
     MATH_SUCCESS = 0,
     MATH_ERR_ARGUMENT_OUTSIDE_DOMAIN,
-} math_debug_code;
+} MathDebugCode;
 
-const char *math_debug_code_to_string(math_debug_code code);
+const char *math_debug_code_to_string(MathDebugCode code);
 
-void math_debug_code_write(math_debug_code *to, math_debug_code value);
+void math_debug_code_write(MathDebugCode *to, MathDebugCode value);
 
 /**
  * Checks whether the number <b>equals zero</b> with consideration about
