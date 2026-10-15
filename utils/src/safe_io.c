@@ -63,15 +63,15 @@ int read_double(double *const out) {
 
 int read_int(int *const out) {
     char buffer[32];
-    char *endptr = NULL;
+    char *end_ptr = NULL;
 
     if (stdin_read(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
-    const int converted_value = (int)strtol(buffer, &endptr, 10);
+    const int converted_value = (int)strtol(buffer, &end_ptr, 10);
 
-    if (endptr == buffer || (*endptr != '\n' && *endptr != '\0'))
+    if (end_ptr == buffer || (*end_ptr != '\n' && *end_ptr != '\0'))
         return -1;
 
     if (errno) {
