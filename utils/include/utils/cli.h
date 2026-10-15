@@ -23,3 +23,5 @@ typedef struct {
 const char *prompt_debug_code_to_string(PromptDebugCode code);
 
 PromptDebugCode prompt_double(PromptOptions *options);
+
+PromptDebugCode prompt_int(PromptOptions *options);
