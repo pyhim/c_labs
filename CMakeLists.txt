@@ -9,7 +9,7 @@ set(UTILS_SOURCES
         #utils/src/string.c
         #utils/src/vector.c
         utils/src/math.c
-        utils/src/debug.c
+        utils/src/collections.c
         utils/src/safe_io.c
         utils/src/cli.c
         utils/src/functional.c
@@ -20,7 +20,7 @@ set(UTILS_HEADERS
         #utils/include/utils/string.h
         utils/include/utils/cli.h
         utils/include/utils/math.h
-        utils/include/utils/debug.h
+        utils/include/utils/collections.h
         utils/include/utils/safe_io.h
         utils/include/utils/functional.h
 )

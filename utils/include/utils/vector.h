@@ -7,7 +7,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "debug.h"
+#include "collections.h"
 
 #define DEFAULT_VECTOR_CAPACITY 8
 
