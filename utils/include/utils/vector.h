@@ -99,6 +99,10 @@ void vector_memcpy_to(const Vector *self, void *dest, size_t n, CollectionDebugC
 
 void *vector_at(const Vector *self, size_t index, CollectionDebugCode *dbg_code);
 
+void *vector_first(const Vector *self, CollectionDebugCode *dbg_code);
+
+void *vector_last(const Vector *self, CollectionDebugCode *dbg_code);
+
 void *vector_unsafe_at(const Vector *self, size_t index);
 
 void vector_free(Vector *self);
