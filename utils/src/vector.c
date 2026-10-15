@@ -75,7 +75,6 @@ void vector_reserve(Vector *const self, const size_t capacity, CollectionDebugCo
     collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
 }
 
-// Copies the element and adds to the end of the vector
 void vector_push_back(Vector *const self, const void *const element, CollectionDebugCode *const dbg_code) {
     if (self->size == self->capacity) {
         const CollectionDebugCode code = vector_increase_capacity(self, DEFAULT_GROWTH_FACTOR);
@@ -112,6 +111,32 @@ void *vector_at(const Vector *const self, const size_t index, CollectionDebugCod
 
     collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
 
+    return vector_unsafe_at(self, index);
+}
+
+void *vector_first(const Vector *self, CollectionDebugCode *dbg_code) {
+    if (self->size == 0) {
+        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        return NULL;
+    }
+
+    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+
+    return vector_unsafe_at(self, 0);
+}
+
+void *vector_last(const Vector *self, CollectionDebugCode *dbg_code) {
+    if (self->size == 0) {
+        collections_debug_code_write(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        return NULL;
+    }
+
+    collections_debug_code_write(dbg_code, COLLECTION_SUCCESS);
+
+    return vector_unsafe_at(self, self->size - 1);
+}
+
+void *vector_unsafe_at(const Vector *self, const size_t index) {
     return self->raw_array + self->type_size * index;
 }
 
