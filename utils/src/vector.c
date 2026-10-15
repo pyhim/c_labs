@@ -4,6 +4,7 @@
 
 #include "../include/utils/vector.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -17,8 +18,10 @@ static CollectionDebugCode vector_increase_capacity(Vector *const self, const do
     const size_t new_capacity = self->capacity * factor; // NOLINT(*-narrowing-conversions)
     void *new_array = realloc(self->raw_array, new_capacity * self->type_size);
 
-    if (!new_array)
+    if (!new_array) {
+        fprintf(stderr, "Lol, buy more RAM looser");
         return COLLECTION_ERR_OUT_OF_MEMORY;
+    }
 
     self->raw_array = new_array;
     self->capacity = new_capacity;
@@ -26,34 +29,31 @@ static CollectionDebugCode vector_increase_capacity(Vector *const self, const do
     return COLLECTION_SUCCESS;
 }
 
-void vector_init(Vector *const self, const size_t type_size, const size_t capacity,
-                 CollectionDebugCode *const dbg_code) {
+void vector_init(Vector *const self, const size_t type_size, const size_t capacity) {
     self->raw_array = malloc(type_size * capacity);
 
     if (!self->raw_array) {
-        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_MEMORY);
+        fprintf(stderr, "Lol, buy more RAM looser");
         return;
     }
 
     self->type_size = type_size;
     self->size = 0;
     self->capacity = capacity;
-
-    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
-Vector vector_new_reserve(const size_t type_size, const size_t capacity, CollectionDebugCode *const dbg_code) {
+Vector vector_new_reserve(const size_t type_size, const size_t capacity) {
     Vector new_vector;
 
-    vector_init(&new_vector, type_size, capacity, dbg_code);
+    vector_init(&new_vector, type_size, capacity);
 
     return new_vector;
 }
 
-Vector vector_new(const size_t type_size, CollectionDebugCode *const dbg_code) {
+Vector vector_new(const size_t type_size) {
     Vector new_vector;
 
-    vector_init(&new_vector, type_size, DEFAULT_VECTOR_CAPACITY, dbg_code);
+    vector_init(&new_vector, type_size, DEFAULT_VECTOR_CAPACITY);
 
     return new_vector;
 }

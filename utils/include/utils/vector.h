@@ -28,11 +28,11 @@ static const Vector empty_vector = {
     .capacity = 0,
 };
 
-Vector vector_new(size_t type_size, CollectionDebugCode *dbg_code);
+Vector vector_new(size_t type_size);
 
-Vector vector_new_reserve(size_t type_size, size_t capacity, CollectionDebugCode *dbg_code);
+Vector vector_new_reserve(size_t type_size, size_t capacity);
 
-void vector_init(Vector *self, size_t type_size, size_t capacity, CollectionDebugCode *dbg_code);
+void vector_init(Vector *self, size_t type_size, size_t capacity);
 
 void vector_reserve(Vector *self, size_t capacity, CollectionDebugCode *dbg_code);
 
