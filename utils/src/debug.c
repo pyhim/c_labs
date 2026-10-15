@@ -4,7 +4,7 @@
 
 #include "../include/utils/debug.h"
 
-const char *utils_debug_code_to_string(const utils_debug_code error_code) {
+const char *utils_debug_code_to_string(const UtilsDebugCode error_code) {
     switch (error_code) {
         case UTILS_ERR_SHRINKING_NOT_ALLOWED:
             return "Shrinking is not supported.";
@@ -21,7 +21,7 @@ const char *utils_debug_code_to_string(const utils_debug_code error_code) {
     }
 }
 
-void utils_debug_code_write(utils_debug_code *const to, const utils_debug_code value) {
+void utils_debug_code_write(UtilsDebugCode *const to, const UtilsDebugCode value) {
     if (!to)
         return;
 
