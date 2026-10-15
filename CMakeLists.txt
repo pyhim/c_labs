@@ -7,7 +7,7 @@ add_compile_options(-Wall -Wextra -Wpedantic -march=native)
 set(UTILS_SOURCES
         #utils/src/array.c
         #utils/src/string.c
-        #utils/src/vector.c
+        utils/src/vector.c
         utils/src/math.c
         utils/src/collections.c
         utils/src/safe_io.c
@@ -16,8 +16,8 @@ set(UTILS_SOURCES
 )
 set(UTILS_HEADERS
         #utils/include/utils/array.h
-        #utils/include/utils/vector.h
         #utils/include/utils/string.h
+        utils/include/utils/vector.h
         utils/include/utils/cli.h
         utils/include/utils/math.h
         utils/include/utils/collections.h
