@@ -14,5 +14,3 @@ typedef enum {
 } CollectionDebugCode;
 
 const char *collections_debug_code_to_string(CollectionDebugCode error_code);
-
-void collections_debug_code_write(CollectionDebugCode *to, CollectionDebugCode value);

@@ -20,10 +20,3 @@ const char *collections_debug_code_to_string(const CollectionDebugCode error_cod
             return "Success.";
     }
 }
-
-void collections_debug_code_write(CollectionDebugCode *const to, const CollectionDebugCode value) {
-    if (!to)
-        return;
-
-    *to = value;
-}
