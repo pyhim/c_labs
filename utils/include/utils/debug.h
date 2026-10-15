@@ -11,8 +11,8 @@ typedef enum {
     UTILS_ERR_OUT_OF_RANGE,
     UTILS_ERR_NULL_POINTER,
     UTILS_ERR_WRONG_TYPE,
-} utils_debug_code;
+} UtilsDebugCode;
 
-const char *utils_debug_code_to_string(utils_debug_code error_code);
+const char *utils_debug_code_to_string(UtilsDebugCode error_code);
 
-void utils_debug_code_write(utils_debug_code *to, utils_debug_code value);
+void utils_debug_code_write(UtilsDebugCode *to, UtilsDebugCode value);
