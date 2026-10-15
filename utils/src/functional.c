@@ -13,3 +13,11 @@ bool invoke_predicate(const Predicate predicate, const void *value) {
 
     return predicate(value);
 }
+
+ComparisonResult invoke_comparer(Comparer comparer, const void *left, const void *right) {
+    if (comparer == NULL || left == NULL || right == NULL) {
+        return CMP_EQUAL;
+    }
+
+    return comparer(left, right);
+}
