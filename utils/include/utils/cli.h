@@ -13,7 +13,7 @@ typedef enum {
 } PromptDebugCode;
 
 typedef struct {
-    double *out;
+    void *out;
     char *label;
     Predicate fail_on;
     char *msg_on_fail;
