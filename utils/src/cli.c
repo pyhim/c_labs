@@ -8,6 +8,12 @@
 
 #include "../include/utils/safe_io.h"
 
+typedef enum {
+    TRY_PROMPT_SUCCESS = 0,
+    TRY_PROMPT_UNEXPECTED_INPUT,
+    TRY_PROMPT_INPUT_VIOLATES_CONSTRAINT,
+} TryPromptDebugCode;
+
 const char *prompt_debug_code_to_string(const PromptDebugCode code) {
     switch (code) {
         case PROMPT_NULL_POINTER:
@@ -19,7 +25,7 @@ const char *prompt_debug_code_to_string(const PromptDebugCode code) {
     }
 }
 
-static int PromptOptions_Double_prepare(PromptOptions_Double *const options) {
+static int PromptOptions_Double_prepare(PromptOptions *const options) {
     if (!options->label)
         options->label = "";
 
@@ -32,13 +38,7 @@ static int PromptOptions_Double_prepare(PromptOptions_Double *const options) {
     return 0;
 }
 
-typedef enum {
-    TRY_PROMPT_SUCCESS = 0,
-    TRY_PROMPT_UNEXPECTED_INPUT,
-    TRY_PROMPT_INPUT_VIOLATES_CONSTRAINT,
-} try_prompt_debug_code;
-
-static try_prompt_debug_code try_prompt_double(double *const out, const char *const label, const Predicate fail_on) {
+static TryPromptDebugCode try_prompt_double(double *const out, const char *const label, const Predicate fail_on) {
     printf("Enter the value for '%s': ", label);
 
     const int status = read_double(out);
@@ -53,7 +53,7 @@ static try_prompt_debug_code try_prompt_double(double *const out, const char *co
     return TRY_PROMPT_SUCCESS;
 }
 
-PromptDebugCode prompt_double(PromptOptions_Double *const options) {
+PromptDebugCode prompt_double(PromptOptions *const options) {
     if (!options)
         return PROMPT_NULL_POINTER;
 
@@ -61,7 +61,7 @@ PromptDebugCode prompt_double(PromptOptions_Double *const options) {
 
     int i = 0;
     while (i < options->max_attempts) {
-        const try_prompt_debug_code status = try_prompt_double(options->out, options->label, options->fail_on);
+        const TryPromptDebugCode status = try_prompt_double(options->out, options->label, options->fail_on);
 
         switch (status) {
             case TRY_PROMPT_INPUT_VIOLATES_CONSTRAINT:

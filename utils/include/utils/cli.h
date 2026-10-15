@@ -18,8 +18,8 @@ typedef struct {
     Predicate fail_on;
     char *msg_on_fail;
     int max_attempts;
-} PromptOptions_Double;
+} PromptOptions;
 
 const char *prompt_debug_code_to_string(PromptDebugCode code);
 
-PromptDebugCode prompt_double(PromptOptions_Double *options);
+PromptDebugCode prompt_double(PromptOptions *options);
