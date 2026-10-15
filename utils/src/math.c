@@ -32,7 +32,7 @@ bool double_greater_than_zero(const double number) {
     return number > EPSILON;
 }
 
-comparison_result compare_doubles(const double left, const double right) {
+ComparisonResult compare_doubles(const double left, const double right) {
     const double delta = left - right;
 
     if (double_greater_than_zero(delta)) {
@@ -45,7 +45,7 @@ comparison_result compare_doubles(const double left, const double right) {
     return CMP_EQUAL;
 }
 
-comparison_result compare_ints(const int left, const int right) {
+ComparisonResult compare_ints(const int left, const int right) {
     if (left > right) {
         return CMP_GREATER_THAN;
     }
