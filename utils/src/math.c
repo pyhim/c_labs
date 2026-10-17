@@ -45,7 +45,7 @@ ComparisonResult compare_doubles(const double left, const double right) {
     return CMP_EQUAL;
 }
 
-ComparisonResult compare_ints(const int left, const int right) {
+ComparisonResult compare_ints(const long left, const long right) {
     if (left > right) {
         return CMP_GREATER_THAN;
     }

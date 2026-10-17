@@ -55,4 +55,4 @@ ComparisonResult compare_doubles(double left, double right);
  * @param right Right operand
  * @return Result of the comparison
  */
-ComparisonResult compare_ints(int left, int right);
+ComparisonResult compare_ints(long left, long right);
