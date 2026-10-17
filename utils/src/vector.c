@@ -161,13 +161,13 @@ void *Vector_unsafe_at(const Vector *self, const size_t index) {
     return self->raw_array + self->type_size * index;
 }
 
-void Vector_memcpy_to(const Vector *self, void *dest, const size_t n, CollectionDebugCode *const dbg_code) {
-    if (n > self->size) {
+void Vector_copy_to_span(const Vector *self, Span* dest, CollectionDebugCode *const dbg_code) {
+    if (dest->len > self->size) {
         write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
         return;
     }
 
-    memcpy(dest, &self->raw_array, n);
+    memcpy(dest, &self->raw_array, dest->len);
 
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }

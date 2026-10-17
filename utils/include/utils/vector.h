@@ -8,6 +8,7 @@
 #include <stdint.h>
 
 #include "collections.h"
+#include "span.h"
 
 #define DEFAULT_VECTOR_CAPACITY 8
 
@@ -44,7 +45,7 @@ void Vector_push_back_multiple(Vector *self, const void *elements, size_t count,
 
 void Vector_pop_back(Vector *self, CollectionDebugCode *dbg_code);
 
-void Vector_memcpy_to(const Vector *self, void *dest, size_t n, CollectionDebugCode *dbg_code);
+void Vector_copy_to_span(const Vector *self, Span* dest, CollectionDebugCode *dbg_code);
 
 void *Vector_at(const Vector *self, size_t index, CollectionDebugCode *dbg_code);
 
