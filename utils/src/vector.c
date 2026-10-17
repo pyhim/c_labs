@@ -14,6 +14,10 @@ DEFINE_WRITE_UNLESS_NULL(int)
 
 #define DEFAULT_GROWTH_FACTOR 1.5
 
+static uint8_t *to_address(const Vector *self, const size_t index) {
+    return self->raw_array + self->type_size * index;
+}
+
 static CollectionDebugCode vector_increase_capacity(Vector *const self, const double factor) {
     const size_t new_capacity = self->capacity * factor; // NOLINT(*-narrowing-conversions)
     void *new_array = realloc(self->raw_array, new_capacity * self->type_size);
@@ -75,6 +79,19 @@ void Vector_reserve(Vector *const self, const size_t capacity, CollectionDebugCo
 
     self->raw_array = new_array;
     self->capacity = capacity;
+
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
+}
+
+void Vector_reverse(const Vector *self, CollectionDebugCode *dbg_code) {
+    if (self->size <= 1) {
+        write_unless_null_int(dbg_code, COLLECTION_ERR_UNINITIALIZED);
+        return;
+    }
+
+    for (size_t left = 0, right = self->size - 1; left < right; left++, right--) {
+        memswap(to_address(self, left), to_address(self, right), self->type_size);
+    }
 
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }

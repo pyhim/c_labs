@@ -36,6 +36,8 @@ void Vector_init(Vector *self, size_t type_size, size_t capacity);
 
 void Vector_reserve(Vector *self, size_t capacity, CollectionDebugCode *dbg_code);
 
+void Vector_reverse(const Vector *self, CollectionDebugCode *dbg_code);
+
 void Vector_push_back(Vector *self, const void *element, CollectionDebugCode *dbg_code);
 
 void Vector_push_back_multiple(Vector *self, const void *elements, size_t count, CollectionDebugCode *dbg_code);
