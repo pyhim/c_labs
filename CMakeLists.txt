@@ -5,24 +5,31 @@ set(CMAKE_C_STANDARD 17)
 add_compile_options(-Wall -Wextra -Wpedantic -march=native)
 
 set(UTILS_SOURCES
-        #utils/src/array.c
         #utils/src/string.c
+        utils/src/array.c
         utils/src/vector.c
         utils/src/math.c
         utils/src/collections.c
         utils/src/safe_io.c
         utils/src/cli.c
         utils/src/functional.c
+        utils/src/numbers.c
+        utils/src/span.c
+        utils/src/memory.c
 )
 set(UTILS_HEADERS
-        #utils/include/utils/array.h
         #utils/include/utils/string.h
+        utils/include/utils/array.h
         utils/include/utils/vector.h
         utils/include/utils/cli.h
         utils/include/utils/math.h
         utils/include/utils/collections.h
         utils/include/utils/safe_io.h
         utils/include/utils/functional.h
+        utils/include/utils/memory.h
+        utils/include/utils/numbers.h
+        utils/include/utils/span.h
+        utils/include/utils/defs.h
 )
 add_library(utils SHARED ${UTILS_HEADERS} ${UTILS_SOURCES})
 target_link_libraries(utils PRIVATE m)
