@@ -57,6 +57,6 @@ ComparisonResult compare_doubles(double left, double right);
  */
 ComparisonResult compare_ints(long left, long right);
 
-void increment_int_by(long *number, long by);
+void accumulate_int(long *number, long by);
 
 void qube_int(long *number);
