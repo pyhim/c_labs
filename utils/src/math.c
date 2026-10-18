@@ -63,7 +63,7 @@ void accumulate_int(long *value, const long increment) {
     *value += increment;
 }
 
-void qube_int(long *number) {
+void qube_int(int *number) {
     if (!number)
         return;
 

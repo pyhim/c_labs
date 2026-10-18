@@ -59,4 +59,4 @@ ComparisonResult compare_ints(long left, long right);
 
 void accumulate_int(long *value, long increment);
 
-void qube_int(long *number);
+void qube_int(int *number);
