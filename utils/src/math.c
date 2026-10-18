@@ -55,3 +55,10 @@ ComparisonResult compare_ints(const long left, const long right) {
 
     return CMP_EQUAL;
 }
+
+void increment_int_by(long *number, const long by) {
+    if (!number)
+        return;
+
+    *number += by;
+}

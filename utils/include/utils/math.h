@@ -56,3 +56,5 @@ ComparisonResult compare_doubles(double left, double right);
  * @return Result of the comparison
  */
 ComparisonResult compare_ints(long left, long right);
+
+void increment_int_by(long *number, long by);
