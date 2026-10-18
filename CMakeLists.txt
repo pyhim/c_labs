@@ -31,7 +31,7 @@ set(UTILS_HEADERS
         utils/include/utils/span.h
         utils/include/utils/defs.h
 )
-add_library(utils SHARED ${UTILS_HEADERS} ${UTILS_SOURCES})
+add_library(utils STATIC ${UTILS_HEADERS} ${UTILS_SOURCES})
 target_link_libraries(utils PRIVATE m)
 
 set(LAB2_SOURCES
