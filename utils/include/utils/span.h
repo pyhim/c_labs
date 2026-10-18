@@ -21,7 +21,7 @@ void Span_init(Span *self, void *data, size_t data_type, size_t len);
 
 Span Span_create(void *data, size_t data_type, size_t len);
 
-Span Span_slice(const Span *self, size_t start, size_t length, CollectionDebugCode *dbg_code);
+Span Span_subspan(const Span *self, size_t start, size_t length, CollectionDebugCode *dbg_code);
 
 void Span_set(const Span *self, size_t index, const void *value, CollectionDebugCode *dbg_code);
 
