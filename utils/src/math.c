@@ -56,7 +56,7 @@ ComparisonResult compare_ints(const long left, const long right) {
     return CMP_EQUAL;
 }
 
-void accumulate_int(long *value, const long increment) {
+void accumulate_int(int *value, const int increment) {
     if (!value)
         return;
 
