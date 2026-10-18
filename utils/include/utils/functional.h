@@ -48,7 +48,7 @@ void invoke_aggregator(Aggregator func, void *total, const void *next);
 
 #define WRAP_AGGREGATOR(A_name, A_args_type)                                             \
     static void A_name##_adapter(void *total, const void *next) {                       \
-        return A_name(*(A_args_type*)total, *(A_args_type*)next);                         \
+        A_name((A_args_type*)total, *(A_args_type*)next);                         \
     }
 
 /*      Action          */
