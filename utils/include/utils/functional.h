@@ -59,5 +59,5 @@ void invoke_action(Action func, void *value);
 
 #define WRAP_ACTION(A_name, A_arg_type)                                                 \
     static void A_name##_adapter(void *value) {                                   \
-        return A_name(*(A_arg_type*)value);                                             \
+        A_name((A_arg_type*)value);                                             \
     }
