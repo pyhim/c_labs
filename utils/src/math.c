@@ -62,3 +62,10 @@ void increment_int_by(long *number, const long by) {
 
     *number += by;
 }
+
+void qube_int(long *number) {
+    if (!number)
+        return;
+
+    *number = *number * *number * *number;
+}
