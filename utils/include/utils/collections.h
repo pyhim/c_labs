@@ -11,6 +11,7 @@ typedef enum {
     COLLECTION_ERR_OUT_OF_RANGE,
     COLLECTION_ERR_NULL_POINTER,
     COLLECTION_ERR_WRONG_TYPE,
+    COLLECTION_ERR_UNINITIALIZED,
 } CollectionDebugCode;
 
 const char *collections_debug_code_to_string(CollectionDebugCode error_code);
