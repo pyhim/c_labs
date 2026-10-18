@@ -8,3 +8,4 @@
 
 int task7(void);
 
+int task18(void);
