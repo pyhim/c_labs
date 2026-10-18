@@ -167,7 +167,7 @@ void Vector_copy_to_span(const Vector *self, Span* dest, CollectionDebugCode *co
         return;
     }
 
-    memcpy(dest, &self->raw_array, dest->len);
+    memcpy(dest->start, self->raw_array, dest->len * self->type_size);
 
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
