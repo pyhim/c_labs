@@ -6,18 +6,18 @@
 
 #include <stddef.h>
 
-bool invoke_predicate(const Predicate predicate, const void *value) {
-    if (predicate == NULL || value == NULL) {
+bool invoke_predicate(const Predicate func, const void *value) {
+    if (func == NULL || value == NULL) {
         return false;
     }
 
-    return predicate(value);
+    return func(value);
 }
 
-ComparisonResult invoke_comparer(Comparer comparer, const void *left, const void *right) {
-    if (comparer == NULL || left == NULL || right == NULL) {
+ComparisonResult invoke_comparer(const Comparer func, const void *left, const void *right) {
+    if (func == NULL || left == NULL || right == NULL) {
         return CMP_EQUAL;
     }
 
-    return comparer(left, right);
+    return func(left, right);
 }

@@ -10,7 +10,7 @@
 
 typedef bool (*Predicate)(const void *);
 
-bool invoke_predicate(Predicate predicate, const void *value);
+bool invoke_predicate(Predicate func, const void *value);
 
 #define WRAP_PREDICATE(P_name, P_arg_type)              \
     static bool P_name##_adapter(const void *value) {   \
@@ -33,9 +33,9 @@ typedef enum {
  */
 typedef ComparisonResult (*Comparer)(const void*, const void*);
 
-ComparisonResult invoke_comparer(Comparer comparer, const void *left, const void *right);
+ComparisonResult invoke_comparer(Comparer func, const void *left, const void *right);
 
 #define WRAP_COMPARER(C_name, C_arg1_type, C_arg2_type)                                 \
-    static ComparisonResult C_name##_adapter(const void *left, const void *right) {    \
+    static ComparisonResult C_name##_adapter(const void *left, const void *right) {     \
         return C_name(*(C_arg1_type*)left, *(C_arg2_type*)right);                       \
     }
