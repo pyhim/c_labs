@@ -47,11 +47,11 @@ void Vector_pop_back(Vector *self, CollectionDebugCode *dbg_code);
 
 void Vector_copy_to_span(const Vector *self, Span* dest, CollectionDebugCode *dbg_code);
 
-void *Vector_at(const Vector *self, size_t index, CollectionDebugCode *dbg_code);
+NO_DISCARD void *Vector_at(const Vector *self, size_t index, CollectionDebugCode *dbg_code);
 
-void *Vector_first(const Vector *self, CollectionDebugCode *dbg_code);
+NO_DISCARD void *Vector_first(const Vector *self, CollectionDebugCode *dbg_code);
 
-void *Vector_last(const Vector *self, CollectionDebugCode *dbg_code);
+NO_DISCARD void *Vector_last(const Vector *self, CollectionDebugCode *dbg_code);
 
 void *Vector_unsafe_at(const Vector *self, size_t index);
 
