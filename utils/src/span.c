@@ -14,13 +14,13 @@ static uint8_t *to_address(const Span *self, const size_t index) {
     return self->start + self->type_size * index;
 }
 
-void Span_init(Span *self, uint8_t *data, const size_t data_type, const size_t len) {
+void Span_init(Span *self, void *data, const size_t data_type, const size_t len) {
     self->start = data;
     self->type_size = data_type;
     self->len = len;
 }
 
-Span Span_create(uint8_t *data, const size_t data_type, const size_t len) {
+Span Span_create(void *data, const size_t data_type, const size_t len) {
     Span new_self;
 
     Span_init(&new_self, data, data_type, len);
@@ -63,7 +63,7 @@ void *Span_aggregate(const Span *self, const Aggregator func) {
     // init result with the first element of the span
     memcpy(result, to_address(self, 0), self->type_size);
 
-    for (size_t i = 0; i < self->len; i++)
+    for (size_t i = 1; i < self->len; i++)
         invoke_aggregator(func, result, to_address(self, i));
 
     return result;

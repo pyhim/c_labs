@@ -17,9 +17,9 @@ typedef struct {
     size_t len;
 } Span;
 
-void Span_init(Span *self, uint8_t *data, size_t data_type, size_t len);
+void Span_init(Span *self, void *data, size_t data_type, size_t len);
 
-Span Span_create(uint8_t *data, size_t data_type, size_t len);
+Span Span_create(void *data, size_t data_type, size_t len);
 
 void Span_set(const Span *self, size_t index, const void *value, CollectionDebugCode *dbg_code);
 
