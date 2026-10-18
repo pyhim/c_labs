@@ -66,3 +66,8 @@ void *Span_aggregate(const Span *self, const Aggregator func) {
 
     return result;
 }
+
+void Span_apply(const Span *self, const Action func) {
+    for (size_t i = 0; i < self->len; i++)
+        invoke_action(func, to_address(self, i));
+}

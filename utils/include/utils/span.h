@@ -29,3 +29,5 @@ void *Span_unsafe_get(const Span *self, size_t index);
 void Span_unsafe_set(const Span *self, size_t index, const void *value);
 
 void *Span_aggregate(const Span *self, Aggregator func);
+
+void Span_apply(const Span *self, Action func);
