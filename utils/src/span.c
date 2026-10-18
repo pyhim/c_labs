@@ -58,7 +58,7 @@ void Span_unsafe_set(const Span *self, const size_t index, const void *value) {
     memcpy(to_address(self, index), value, self->type_size);
 }
 
-void *Span_aggregate(const Span *self, const Aggregator func, CollectionDebugCode *dbg_code) {
+void *Span_aggregate(const Span *self, const Aggregator func) {
     void *result = malloc(self->type_size);
 
     for (size_t i = 0; i < self->len; i++)
