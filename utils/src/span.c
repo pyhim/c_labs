@@ -28,6 +28,17 @@ Span Span_create(void *data, const size_t data_type, const size_t len) {
     return new_self;
 }
 
+Span Span_slice(const Span *self, const size_t start, const size_t length, CollectionDebugCode *dbg_code) {
+    if (start > length || length > self->len) {
+        write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
+        return Span_create(NULL, self->type_size, 0);
+    }
+
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
+
+    return Span_create(to_address(self, start), self->type_size, length - start);
+}
+
 void *Span_get(const Span *self, const size_t index, CollectionDebugCode *dbg_code) {
     if (index >= self->len) {
         write_unless_null_int(dbg_code, COLLECTION_ERR_OUT_OF_RANGE);
