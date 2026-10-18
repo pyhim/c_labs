@@ -50,3 +50,14 @@ void invoke_aggregator(Aggregator func, void *total, const void *next);
     static void A_name##_adapter(void *total, const void *next) {                       \
         return A_name(*(A_arg_type*)total, *(A_arg_type*)next);                         \
     }
+
+/*      Action          */
+
+typedef void (*Action)(void*);
+
+void invoke_action(Action func, void *value);
+
+#define WRAP_ACTION(A_name, A_arg_type)                                                 \
+    static void A_name##_adapter(void *value) {                                   \
+        return A_name(*(A_arg_type*)value);                                             \
+    }

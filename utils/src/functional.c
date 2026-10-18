@@ -29,3 +29,11 @@ void invoke_aggregator(const Aggregator func, void *total, const void *next) {
 
     func(total, next);
 }
+
+void invoke_action(const Action func, void *value) {
+    if (func == NULL || value == NULL) {
+        return;
+    }
+
+    func(value);
+}
