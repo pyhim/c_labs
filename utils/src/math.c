@@ -56,11 +56,11 @@ ComparisonResult compare_ints(const long left, const long right) {
     return CMP_EQUAL;
 }
 
-void accumulate_int(long *number, const long by) {
-    if (!number)
+void accumulate_int(long *value, const long increment) {
+    if (!value)
         return;
 
-    *number += by;
+    *value += increment;
 }
 
 void qube_int(long *number) {
