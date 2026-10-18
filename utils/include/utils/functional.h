@@ -39,3 +39,14 @@ ComparisonResult invoke_comparer(Comparer func, const void *left, const void *ri
     static ComparisonResult C_name##_adapter(const void *left, const void *right) {     \
         return C_name(*(C_arg1_type*)left, *(C_arg2_type*)right);                       \
     }
+
+/*      Aggregator      */
+
+typedef void (*Aggregator)(void*, const void*);
+
+void invoke_aggregator(Aggregator func, void *total, const void *next);
+
+#define WRAP_AGGREGATOR(A_name, A_arg_type)                                             \
+    static void A_name##_adapter(void *total, const void *next) {                       \
+        return A_name(*(A_arg_type*)total, *(A_arg_type*)next);                         \
+    }

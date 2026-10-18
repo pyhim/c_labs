@@ -21,3 +21,11 @@ ComparisonResult invoke_comparer(const Comparer func, const void *left, const vo
 
     return func(left, right);
 }
+
+void invoke_aggregator(const Aggregator func, void *total, const void *next) {
+    if (func == NULL || total == NULL || next == NULL) {
+        return;
+    }
+
+    func(total, next);
+}
