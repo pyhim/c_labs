@@ -5,7 +5,7 @@
 #include "../include/tasks.h"
 
 int main(void) {
-    task7();
+    task21();
 
     return 0;
 }

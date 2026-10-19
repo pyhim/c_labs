@@ -116,7 +116,7 @@ int task21(void) {
         .out = &number,
         .label = "Number",
         .fail_on = int_not_four_digits_adapter,
-        .msg_on_fail = "Number must be three digits",
+        .msg_on_fail = "Number must be four digits",
         .max_attempts = 5,
     };
 
