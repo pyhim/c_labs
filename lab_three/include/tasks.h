@@ -9,3 +9,5 @@
 int task7(void);
 
 int task18(void);
+
+int task21(void);
