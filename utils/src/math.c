@@ -63,6 +63,13 @@ void accumulate_sum_int(int *value, const int increment) {
     *value += increment;
 }
 
+void accumulate_product_int(int *value, const int factor) {
+    if (!value)
+        return;
+
+    *value *= factor;
+}
+
 void qube_int(int *number) {
     if (!number)
         return;
