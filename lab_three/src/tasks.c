@@ -88,10 +88,11 @@ int task18(void) {
 
     decompose_int(number, &digits_view);
     Span_apply(&digits_view, qube_int_adapter);
-    int *qubed_and_summed = Span_aggregate(&digits_view, accumulate_int_adapter);
+    int qubed_and_summed = 0;
+    Span_aggregate(&digits_view, accumulate_int_adapter, &qubed_and_summed);
     const int doubled_number = number * number;
 
-    if (doubled_number == *qubed_and_summed) {
+    if (doubled_number == qubed_and_summed) {
         puts("Number is equal to the sum of its digits cubed.");
         return 0;
     }
