@@ -22,7 +22,7 @@ void print_equation_result(const int equation_id, const double result, const Mat
 int start_menu(void) {
     double x = 0.0, y = 0.0;
 
-    PromptOptions_Double x_input_options = {
+    PromptOptions x_input_options = {
         .out = &x,
         .label = "X",
         .max_attempts = 5,
@@ -32,7 +32,7 @@ int start_menu(void) {
     if (status)
         return status;
 
-    PromptOptions_Double y_input_options = {
+    PromptOptions y_input_options = {
         .out = &y,
         .label = "Y",
         .max_attempts = 5,
