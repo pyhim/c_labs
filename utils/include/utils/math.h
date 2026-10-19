@@ -62,3 +62,13 @@ void accumulate_sum_int(int *value, int increment);
 void accumulate_product_int(int *value, int factor);
 
 void qube_int(int *number);
+
+typedef struct {
+    double x;
+    double y;
+} Point2D;
+
+typedef struct {
+    Point2D top_left;
+    Point2D bottom_right;
+} Rectangle;
