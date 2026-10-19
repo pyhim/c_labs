@@ -31,6 +31,6 @@ void Span_unsafe_set(const Span *self, size_t index, const void *value);
 
 NO_DISCARD void *Span_get(const Span *self, size_t index, CollectionDebugCode *dbg_code);
 
-NO_DISCARD void *Span_aggregate(const Span *self, Aggregator func);
+void Span_aggregate(const Span *self, Aggregator func, void *out);
 
 void Span_apply(const Span *self, Action func);

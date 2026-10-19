@@ -69,15 +69,13 @@ void Span_unsafe_set(const Span *self, const size_t index, const void *value) {
     memcpy(to_address(self, index), value, self->type_size);
 }
 
-void *Span_aggregate(const Span *self, const Aggregator func) {
-    void *result = malloc(self->type_size);
-    // init result with the first element of the span
-    memcpy(result, to_address(self, 0), self->type_size);
+void Span_aggregate(const Span *self, const Aggregator func, void *out) {
+
+    // init out with the first element of the span
+    memcpy(out, to_address(self, 0), self->type_size);
 
     for (size_t i = 1; i < self->len; i++)
-        invoke_aggregator(func, result, to_address(self, i));
-
-    return result;
+        invoke_aggregator(func, out, to_address(self, i));
 }
 
 void Span_apply(const Span *self, const Action func) {
