@@ -36,7 +36,7 @@ Span Span_subspan(const Span *self, const size_t start, const size_t length, Col
 
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 
-    return Span_create(to_address(self, start), self->type_size, length - start);
+    return Span_create(to_address(self, start), self->type_size, length);
 }
 
 void *Span_get(const Span *self, const size_t index, CollectionDebugCode *dbg_code) {
