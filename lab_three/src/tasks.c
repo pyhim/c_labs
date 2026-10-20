@@ -10,8 +10,7 @@
 
 #include <utils/cli.h>
 #include <utils/math.h>
-
-#include "utils/numbers.h"
+#include <utils/numbers.h>
 
 WRAP_PREDICATE(double_less_than_zero, double)
 
@@ -187,6 +186,351 @@ int task21(void) {
         puts("Digits product is not divisible by 'a'.");
 
     /* end subtask b */
+
+    return 0;
+}
+
+int task25(void) {
+    Point2D A = {.x = 0, .y = 0};
+    Point2D B = {.x = 0, .y = 0};
+
+    PromptOptions points_input_options = {
+        .out = &A.x,
+        .label = "A(x)",
+        .max_attempts = 5,
+    };
+
+    if (prompt_double(&points_input_options))
+        return -1;
+
+    points_input_options.out = &A.y;
+    points_input_options.label = "A(y)";
+
+    if (prompt_double(&points_input_options))
+        return -1;
+
+    points_input_options.out = &B.x;
+    points_input_options.label = "B(x)";
+
+    if (prompt_double(&points_input_options))
+        return -1;
+
+    points_input_options.out = &B.y;
+    points_input_options.label = "B(y)";
+
+    if (prompt_double(&points_input_options))
+        return -1;
+
+    const double distance_A = A.x * A.x + A.y * A.y;
+    const double distance_B = B.x * B.x + B.y * B.y;
+
+    switch (compare_doubles(distance_A, distance_B)) {
+        case CMP_LESS_THAN:
+            puts("A is closer to the (0,0).");
+            break;
+        case CMP_GREATER_THAN:
+            puts("B is closer to the (0,0).");
+            break;
+        case CMP_EQUAL:
+            puts("A and B are equidistant from the (0,0).");
+            break;
+    }
+
+    return 0;
+}
+
+int task29(void) {
+    int n = 0, m = 0;
+
+    PromptOptions input_options = {
+        .out = &n,
+        .label = "n",
+        .max_attempts = 5,
+    };
+
+    if (prompt_int(&input_options))
+        return -1;
+
+    input_options.out = &m;
+    input_options.label = "m";
+
+    if (prompt_int(&input_options))
+        return -1;
+
+    if (n > m)
+        m = n;
+    else if (n < m)
+        n = m;
+    else {
+        n = 0;
+        m = 0;
+    }
+
+    printf("n = %d, m = %d\n", n, m);
+
+    return 0;
+}
+
+typedef struct {
+    const char *name;
+    int points;
+} Participant;
+
+int task44(void) {
+    const size_t participants_count = 3;
+    Participant participants[participants_count];
+
+    for (size_t i = 0; i < participants_count; ++i) {
+        const char *names[] = { "Ivanov", "Petrov", "Sidorov" };
+        participants[i].name = names[i];
+
+        printf("%s starts to participate!\n", names[i]);
+
+        const int rounds = 3;
+        for (size_t j = 0; j < rounds; ++j) {
+            printf("Round %lu.\n", j + 1);
+
+            int point = 0;
+            PromptOptions input_options = {
+                .out = &point,
+                .label = "points",
+            };
+
+            if (prompt_int(&input_options))
+                return -1;
+
+            participants[i].points += point;
+        }
+    }
+
+    Participant winner = participants[0];
+    bool draw = true;
+
+    for (size_t i = 0; i < participants_count; ++i) {
+        draw = participants[i].points == winner.points;
+
+        if (participants[i].points > winner.points)
+            winner = participants[i];
+    }
+
+    if (draw)
+        printf("It's a draw!\n");
+    else
+        printf("The winner is %s with %d points!\n", winner.name, winner.points);
+
+    return 0;
+}
+
+int task68(void) {
+    Rectangle rectangle1 = {0}, rectangle2 = {0};
+
+    PromptOptions input_options = {
+        .out = &rectangle1.top_left.x,
+        .label = "x1",
+        .fail_on = double_less_than_zero_adapter,
+        .msg_on_fail = "Coordinate points must be greater than zero.",
+        .max_attempts = 5,
+    };
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    input_options.out = &rectangle1.top_left.y;
+    input_options.label = "y1";
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    input_options.out = &rectangle1.bottom_right.x;
+    input_options.label = "x2";
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    rectangle1.bottom_right.y = 0;
+
+    input_options.out = &rectangle2.top_left.x;
+    input_options.label = "x3";
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    input_options.out = &rectangle2.top_left.y;
+    input_options.label = "y3";
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    input_options.out = &rectangle2.bottom_right.x;
+    input_options.label = "x4";
+
+    if (prompt_double(&input_options))
+        return -1;
+
+    rectangle2.bottom_right.y = 0;
+
+    const bool valid_arguments =
+        rectangle1.top_left.x < rectangle1.bottom_right.x &&
+        rectangle2.top_left.x < rectangle2.bottom_right.x &&
+        rectangle1.top_left.y > 0 &&
+        rectangle2.top_left.y > 0;
+
+    if (!valid_arguments) {
+        puts("Argument(-s) is/are outside the domain of the function's permissible values.");
+        return -1;
+    }
+
+    const double x_left = fmax(rectangle1.top_left.x, rectangle2.top_left.x);
+    const double x_right = fmin(rectangle1.bottom_right.x, rectangle2.bottom_right.x);
+    const double width = x_right - x_left;
+    const double height = fmin(rectangle1.top_left.y, rectangle2.top_left.y);
+
+    if (double_greater_than_zero(width)) {
+        puts("The rectangles overlap.");
+        const double area = width * height;
+        printf("The area of the overlap is %.2lf.\n", area);
+        return 0;
+    }
+
+    puts("The rectangles do not overlap.");
+
+    return 0;
+}
+
+int task77(void) {
+    const size_t points = 4;
+    Point2D quadriliteral[points];
+
+    for (size_t i = 0; i < points; ++i) {
+        printf("Point #%lu: \n", i + 1);
+
+        PromptOptions input_options = {
+            .out = &quadriliteral[i].x,
+            .label = "x",
+        };
+
+        if (prompt_double(&input_options)) {
+            return -1;
+        }
+
+        input_options.out = &quadriliteral[i].y;
+        input_options.label = "y";
+
+        if (prompt_double(&input_options)) {
+            return -1;
+        }
+    }
+
+    const size_t cross_products_count = 4;
+    const double cross_products[] = {
+        cross_product(quadriliteral[3], quadriliteral[0], quadriliteral[1]),
+        cross_product(quadriliteral[0], quadriliteral[1], quadriliteral[2]),
+        cross_product(quadriliteral[1], quadriliteral[2], quadriliteral[3]),
+        cross_product(quadriliteral[2], quadriliteral[3], quadriliteral[0])
+    };
+
+    bool all_positive = true;
+    bool all_negative = true;
+
+    for (size_t i = 0; i < cross_products_count; ++i) {
+        all_positive = all_positive && double_greater_than_zero(cross_products[i]);
+        all_negative = all_negative && double_less_than_zero(cross_products[i]);
+    }
+
+    if (all_positive || all_negative) {
+        puts("The quadrilateral is convex.");
+    } else {
+        puts("The quadrilateral is not convex.");
+    }
+    return 0;
+}
+
+int task81(void) {
+    int a = 0, b = 0;
+
+    PromptOptions input_options = {
+        .out = &a,
+        .label = "a",
+    };
+
+    if (prompt_int(&input_options))
+        return -1;
+
+    input_options.out = &b;
+    input_options.label = "b";
+
+    if (prompt_int(&input_options))
+        return -1;
+
+    if (a == 0 && b == 0) {
+        puts("No, neither of the numbers is a divisor of the other.");
+        return -1;
+    }
+    if (a == 0) {
+        puts("Yes, one of the numbers is a divisor of the other.");
+        return 0;
+    }
+    if (b == 0) {
+        puts("Yes, one of the numbers is a divisor of the other.");
+        return 0;
+    }
+    if (a % b == 0 || b % a == 0) {
+        puts("Yes, one of the numbers is a divisor of the other.");
+        return 0;
+    }
+
+    puts("No, neither of the numbers is a divisor of the other.");
+    return -1;
+}
+
+static bool is_valid_triplet(const double a, const double b, const double c) {
+    return compare_doubles(a, b) != CMP_EQUAL &&
+           compare_doubles(b, c) != CMP_EQUAL &&
+           compare_doubles(a, c) != CMP_EQUAL;
+}
+
+static double get_triplet_median(const double a, const double b, const double c) {
+    const double sum = a + b + c;
+    const double min_val = fmin(a, fmin(b, c));
+    const double max_val = fmax(a, fmax(b, c));
+
+    return sum - min_val - max_val;
+}
+
+int task113(void) {
+    double triplet1[3], triplet2[3];
+
+    for (size_t i = 0; i < 3; ++i) {
+        PromptOptions input_options = {
+            .out = &triplet1[i],
+        };
+
+        if (prompt_double(&input_options))
+            return -1;
+    }
+
+    for (size_t i = 0; i < 3; ++i) {
+        PromptOptions input_options = {
+            .out = &triplet2[i],
+        };
+
+        if (prompt_double(&input_options))
+            return -1;
+    }
+
+    if (!is_valid_triplet(triplet1[0], triplet1[1], triplet1[2]) ||
+        !is_valid_triplet(triplet2[0], triplet2[1], triplet2[2])) {
+        puts("Invalid triplet, must be unique numbers.");
+        return -1;
+    }
+
+    const double median1 = get_triplet_median(triplet1[0], triplet1[1], triplet1[2]);
+    const double median2 = get_triplet_median(triplet2[0], triplet2[1], triplet2[2]);
+    const double average = (median1 + median2) / 2.0;
+
+    printf("Median 1: %.3f\n", median1);
+    printf("Median 2: %.3f\n", median2);
+    printf("Average of medians: %.3f\n", average);
 
     return 0;
 }
