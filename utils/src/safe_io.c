@@ -19,7 +19,7 @@ static void drain_stdin(void) {
     }
 }
 
-int stdin_read(char *const out, const int size) {
+int read_line(char *const out, const int size) {
     const char *result = fgets(out, size, stdin);
 
     if (!result) {
@@ -42,7 +42,7 @@ int read_double(double *const out) {
 
     memset(buffer, BUFFER_PLACEHOLDER, sizeof(buffer));
 
-    if (stdin_read(buffer, sizeof(buffer)))
+    if (read_line(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
@@ -65,7 +65,7 @@ int read_int(int *const out) {
     char buffer[32];
     char *end_ptr = NULL;
 
-    if (stdin_read(buffer, sizeof(buffer)))
+    if (read_line(buffer, sizeof(buffer)))
         return -1;
 
     errno = 0;
