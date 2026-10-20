@@ -6,8 +6,6 @@
 
 //#include "collections/array.h"
 
-int read_line(char *out, int size);
-
 int read_double(double *out);
 
 int read_int(int *out);

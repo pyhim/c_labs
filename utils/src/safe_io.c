@@ -19,7 +19,7 @@ static void drain_stdin(void) {
     }
 }
 
-int read_line(char *const out, const int size) {
+static int read_line(char *const out, const int size) {
     const char *result = fgets(out, size, stdin);
 
     if (!result) {
