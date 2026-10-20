@@ -72,3 +72,5 @@ typedef struct {
     Point2D top_left;
     Point2D bottom_right;
 } Rectangle;
+
+double cross_product(Point2D a, Point2D b, Point2D c);

@@ -76,3 +76,7 @@ void qube_int(int *number) {
 
     *number = *number * *number * *number;
 }
+
+double cross_product(const Point2D a, const Point2D b, const Point2D c) {
+    return (b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x);
+}
