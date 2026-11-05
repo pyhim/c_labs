@@ -57,3 +57,14 @@ set(LAB3_HEADERS
 add_executable(lab3 ${LAB3_HEADERS} ${LAB3_SOURCES})
 target_include_directories(lab3 PRIVATE utils/include/)
 target_link_libraries(lab3 PRIVATE utils)
+
+set(LAB4_SOURCES
+        lab_four/src/main.c
+        lab_four/src/tasks.c
+)
+set(LAB4_HEADERS
+        lab_four/include/tasks.h
+)
+add_executable(lab4 ${LAB4_HEADERS} ${LAB4_SOURCES})
+target_include_directories(lab4 PRIVATE utils/include/)
+target_link_libraries(lab4 PRIVATE utils)
