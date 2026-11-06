@@ -11,7 +11,6 @@
 #include <utils/cli.h>
 #include <utils/math.h>
 #include <utils/numbers.h>
-//
 
 WRAP_PREDICATE(double_less_than_zero, double)
 
