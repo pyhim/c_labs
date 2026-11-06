@@ -106,8 +106,7 @@ void Vector_push_back(Vector *const self, const void *const element, CollectionD
         }
     }
 
-    void *dest = self->raw_array + self->type_size * self->size;
-    memcpy(dest, element, self->type_size);
+    memcpy(to_address(self, self->size), element, self->type_size);
     self->size++;
 
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
