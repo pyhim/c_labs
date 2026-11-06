@@ -6,22 +6,22 @@
 
 // [18, 25, 44, 80, 81, 142, 177, 186, 233, 249]
 
-void task18(void);
+int task18(void);
 
-void task25(void);
+int task25(void);
 
-void task44(void);
+int task44(void);
 
-void task80(void);
+int task80(void);
 
-void task81(void);
+int task81(void);
 
-void task142(void);
+int task142(void);
 
-void task177(void);
+int task177(void);
 
-void task186(void);
+int task186(void);
 
-void task233(void);
+int task233(void);
 
-void task249(void);
+int task249(void);
