@@ -59,6 +59,8 @@ ComparisonResult compare_ints(long left, long right);
 
 void accumulate_sum_int(int *value, int increment);
 
+void accumulate_sum_double(double *value, double increment);
+
 void accumulate_product_int(int *value, int factor);
 
 void qube_int(int *number);
