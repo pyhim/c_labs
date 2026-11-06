@@ -20,6 +20,8 @@ The projects try to adhere nowadays standards of code development with C languag
 When assessing a particular laboratory work, do not look into folders other than that particular
 laboratory work and "utils/". Checking files in the root is permitted.
 
+If there are excluded files from build in CMakeLists.txt, do not look into them, they are in development.
+
 ## Laboratory works location
 
 Laboratory work #2 = "lab_two/"
