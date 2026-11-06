@@ -113,6 +113,22 @@ void Vector_push_back(Vector *const self, const void *const element, CollectionD
     write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
 }
 
+void Vector_push_back_multiple(Vector *self, const void *elements, const size_t count, CollectionDebugCode *dbg_code) {
+    if (self->capacity < self->size + count) {
+        const CollectionDebugCode code = vector_increase_capacity(self, DEFAULT_GROWTH_FACTOR);
+
+        if (code != COLLECTION_SUCCESS) {
+            write_unless_null_int(dbg_code, code);
+            return;
+        }
+    }
+
+    memcpy(to_address(self, self->size), elements, count * self->type_size);
+    self->size += count;
+
+    write_unless_null_int(dbg_code, COLLECTION_SUCCESS);
+}
+
 // void Vector_pop_back(Vector *const self, CollectionDebugCode *const dbg_code) {
 //     if (self->size == 0) {
 //         write_error_code(dbg_code, ERR_OUT_OF_RANGE);
